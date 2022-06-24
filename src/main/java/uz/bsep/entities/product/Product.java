@@ -42,10 +42,10 @@ public class Product extends Auditable {
     @Column(columnDefinition = "jsonb")
     TranslateJson descriptionTranslate;
 
-    @OneToMany
+    @OneToMany(mappedBy = "product")
     List<Photo> photosUrls=new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "product")
     List<Parameter> parameters =new ArrayList<>();
 
     Double price;

@@ -7,6 +7,8 @@ import lombok.experimental.FieldDefaults;
 import uz.bsep.entities.product.Product;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,4 +18,7 @@ import javax.persistence.Entity;
 @Entity(name = "photos")
 public class Photo extends Auditable {
     String path;
+
+    @ManyToOne
+    Product product;
 }

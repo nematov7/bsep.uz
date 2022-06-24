@@ -14,8 +14,8 @@ public interface GenericService<
         C extends BaseGenericCriteria
         > extends BaseGenericService {
 
-    D get(K id);
+    D get(K id, String lang);
 
-    List<D> getAll(C criteria);
+    List<D> getAll(C criteria, String lang);
 
 }
