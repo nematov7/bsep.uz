@@ -13,6 +13,7 @@ import uz.bsep.entities.base.Auditable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity(name = "parameters")
@@ -34,4 +35,7 @@ public class Parameter extends Auditable {
     TranslateJson nameTranslateJson;
 
     String value;
+
+    @ManyToOne
+    Product product;
 }

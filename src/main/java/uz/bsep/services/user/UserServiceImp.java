@@ -41,12 +41,12 @@ public class UserServiceImp extends AbstractService<
     }
 
     @Override
-    public UserDto get(String id) {
+    public UserDto get(String id, String lang) {
         return null;
     }
 
     @Override
-    public List<UserDto> getAll(BaseGenericCriteria criteria) {
+    public List<UserDto> getAll(BaseGenericCriteria criteria, String lang) {
         return null;
     }
 }
