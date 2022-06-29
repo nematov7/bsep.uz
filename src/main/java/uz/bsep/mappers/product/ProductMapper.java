@@ -14,7 +14,7 @@ import uz.bsep.mappers.base.AbstractMapper;
 
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface ProductMapper extends AbstractMapper<Product, ProductDto, ProductCreateDto, ProductUpdateDto> {
-
+    @Override
     @Mappings(
             {
                     @Mapping(target = "nameTranslate.uz", source = "dto.nameUz"),
@@ -25,5 +25,5 @@ public interface ProductMapper extends AbstractMapper<Product, ProductDto, Produ
                     @Mapping(target = "descriptionTranslate.en", source = "dto.descriptionEn")
             }
     )
-    Product fromDto(ProductCreateDto dto);
+    Product fromCreateDto(ProductCreateDto dto);
 }
