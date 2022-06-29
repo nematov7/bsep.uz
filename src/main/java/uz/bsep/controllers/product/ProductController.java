@@ -20,6 +20,7 @@ public class ProductController extends AbstractController<ProductServiceImpl> {
         super(service);
     }
 
+
     @PostMapping
     public String save(ProductCreateDto dto, Model model){
         var id = service.create(dto);

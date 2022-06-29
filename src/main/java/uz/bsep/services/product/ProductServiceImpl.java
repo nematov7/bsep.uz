@@ -1,7 +1,6 @@
 package uz.bsep.services.product;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uz.bsep.criteria.base.GenericCriteria;
 import uz.bsep.dtos.product.ProductCreateDto;
@@ -20,11 +19,12 @@ import java.util.List;
 public class ProductServiceImpl extends AbstractService<ProductRepository, ProductMapper, BaseGenericValidator> implements ProductService{
 
 
-    @Autowired
-    ObjectMapper objectMapper;
 
-    protected ProductServiceImpl(ProductMapper mapper, BaseGenericValidator validator, ProductRepository repository) {
+    private final ObjectMapper objectMapper;
+
+    protected ProductServiceImpl(ProductMapper mapper, BaseGenericValidator validator, ProductRepository repository, ObjectMapper objectMapper) {
         super(mapper, validator, repository);
+        this.objectMapper = objectMapper;
     }
 
     @Override
