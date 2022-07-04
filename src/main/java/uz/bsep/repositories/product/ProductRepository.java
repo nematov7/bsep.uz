@@ -14,7 +14,7 @@ public interface ProductRepository extends AbstractRepository<Product,String> {
                      pr.price,
                      pr.name_translate -> :lang as "name",
                      pr.description_translate -> :lang  as "description",
-                     json_agg(photos)                                                                      as "photos",
+                     json_agg(photos.path)                                                                    as "photos",
                      json_agg(json_build_object('name', p.name_translate_json -> :lang, 'value', p.value)) as "parametrs"
               from products as pr
                        join photos on pr.id = photos.product_id
