@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import uz.bsep.controllers.AbstractController;
+import uz.bsep.criteria.base.GenericCriteria;
 import uz.bsep.dtos.product.ProductCreateDto;
 import uz.bsep.dtos.product.ProductDto;
 import uz.bsep.services.product.ProductServiceImpl;
 
+import java.util.List;
 import static uz.bsep.controllers.AbstractController.PATH;
 
 @Controller
@@ -29,12 +31,16 @@ public class ProductController extends AbstractController<ProductServiceImpl> {
     }
 
     @GetMapping("/{id}/{lang}")
-    public String getById(@PathVariable String id, @PathVariable String lang, Model model){
+    public String getById(@PathVariable String id, @PathVariable String lang){
         var productDto = service.get(id, lang);
-        model.addAttribute("product", productDto);
         return "product";
     }
 
+    @GetMapping("/{lang}")
+    public String getAll(@PathVariable String lang){
+        List<ProductDto> all = service.getAll(new GenericCriteria(), lang);
+        return "products";
+    }
 
 
 
