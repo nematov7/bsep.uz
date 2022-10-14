@@ -37,8 +37,8 @@ public class Company extends Auditable {
     @Column(columnDefinition = "jsonb")
     TranslateJson descriptionTranslate;
 
-    @Type(type = "json")
-    @Column(columnDefinition = "jsonb")
+    @Type(type = "string-array")
+    @Column(columnDefinition = "text")
     List<String> phoneNumbers=new ArrayList<>();
 
     String email;
@@ -52,4 +52,4 @@ public class Company extends Auditable {
     List<Photo> photos = new ArrayList<>();
 
 }
-//tmi906060363
+//tmi9

@@ -34,19 +34,14 @@ public class ProductController extends AbstractController<ProductServiceImpl> {
 
 
     @PutMapping("/{id}")
-    public String editById(@PathVariable String id, ProductUpdateDto updateDto,Model model){
-
+    public String editById(@PathVariable String id, ProductUpdateDto updateDto){
         service.update(updateDto);
-        return "";
+        return "ok";
     }
-
 
     @DeleteMapping("/{id}")
     public String deleteById(@PathVariable String id){
         service.delete(id);
         return "";
     }
-
-
-
 }
