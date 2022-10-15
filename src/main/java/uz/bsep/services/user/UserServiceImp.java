@@ -2,11 +2,14 @@ package uz.bsep.services.user;
 
 
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import uz.bsep.criteria.base.BaseGenericCriteria;
 import uz.bsep.dtos.user.UserCreateDto;
 import uz.bsep.dtos.user.UserDto;
 import uz.bsep.dtos.user.UserUpdateDto;
+import uz.bsep.exceptions.ResourceNotFoundException;
 import uz.bsep.mappers.user.UserMapper;
 import uz.bsep.repositories.user.UserRepository;
 import uz.bsep.services.base.AbstractService;
@@ -48,5 +51,10 @@ public class UserServiceImp extends AbstractService<
     @Override
     public List<UserDto> getAll(BaseGenericCriteria criteria, String lang) {
         return null;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return repository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("user not found"));
     }
 }
