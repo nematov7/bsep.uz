@@ -1,6 +1,7 @@
 package uz.bsep.services.user;
 
 
+import org.springframework.security.core.userdetails.UserDetailsService;
 import uz.bsep.criteria.base.BaseGenericCriteria;
 import uz.bsep.dtos.user.UserCreateDto;
 import uz.bsep.dtos.user.UserDto;
@@ -13,6 +14,6 @@ public interface UserService extends GenericCrudService<
         UserUpdateDto,
         String,
         BaseGenericCriteria
-        > {
+        > , UserDetailsService {
 
 }
