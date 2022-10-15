@@ -1,6 +1,10 @@
 package uz.bsep.services.product;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import uz.bsep.criteria.base.GenericCriteria;
 import uz.bsep.dtos.product.ProductCreateDto;
@@ -12,12 +16,12 @@ import uz.bsep.repositories.product.ProductRepository;
 import uz.bsep.services.base.AbstractService;
 import uz.bsep.validators.base.BaseGenericValidator;
 
+import java.net.http.HttpClient;
 import java.util.List;
 
 
 @Service
-public class ProductServiceImpl extends AbstractService<ProductRepository, ProductMapper, BaseGenericValidator> implements ProductService{
-
+public class ProductServiceImpl extends AbstractService<ProductRepository, ProductMapper, BaseGenericValidator> implements ProductService {
 
 
     private final ObjectMapper objectMapper;
@@ -36,7 +40,12 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
 
     @Override
     public void delete(String id) {
+        try {
         repository.deleteById(id);
+
+        }catch (Exception e){
+
+        }
     }
 
     @Override
@@ -47,9 +56,12 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
     @Override
     public ProductDto get(String id, String lang) {
         String object = repository.getProductById(id, lang);
+        System.out.println(object);
         try {
-            objectMapper.readValue(object, ProductDto.class);
-        } catch (JsonProcessingException e) {
+            Gson gson = new Gson();
+            return gson.fromJson(object, ProductDto.class);
+//          return   objectMapper.readValue(object, ProductDto.class);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

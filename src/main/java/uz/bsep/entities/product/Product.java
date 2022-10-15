@@ -5,7 +5,7 @@ import com.vladmihalcea.hibernate.type.array.StringArrayType;
 import com.vladmihalcea.hibernate.type.json.JsonType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.Type;
+
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 import uz.bsep.entities.TranslateJson;
@@ -14,6 +14,7 @@ import uz.bsep.entities.photo.Photo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,23 +32,23 @@ import java.util.List;
 })
 public class Product extends Auditable {
 
-    @Column(nullable = false)
-    String name;
-
-    @Type(type = "json")
+    @org.hibernate.annotations.Type(type = "json")
     @Column(columnDefinition = "jsonb")
     TranslateJson nameTranslate;
 
-    @Type(type = "json")
+    @org.hibernate.annotations.Type(type = "json")
     @Column(columnDefinition = "jsonb")
     TranslateJson descriptionTranslate;
 
     @OneToMany(mappedBy = "product")
-    List<Photo> photosUrls=new ArrayList<>();
+    List<Photo> photosUrls = new ArrayList<>();
 
     @OneToMany(mappedBy = "product")
-    List<Parameter> parameters =new ArrayList<>();
-
+    List<Parameter> parameters = new ArrayList<>();
+    @Column(nullable = false)
     Double price;
+
+    @ManyToOne
+    Type type;
 
 }

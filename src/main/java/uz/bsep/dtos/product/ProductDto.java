@@ -1,20 +1,24 @@
 package uz.bsep.dtos.product;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
 import uz.bsep.dtos.base.GenericDto;
 import uz.bsep.entities.photo.Photo;
 import uz.bsep.entities.product.Parameter;
 
 import java.util.List;
-
+@Getter
+@Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductDto extends GenericDto {
 
     String name;
     String description;
-    String price;
+    Double price;
     List<String> photos;
     List<ParameterDto> parameters;
 
-    public ProductDto(String name, String description, String price, List<String> photos, List<ParameterDto> parameters) {
+    public ProductDto(String name, String description, Double price, List<String> photos, List<ParameterDto> parameters) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -22,7 +26,7 @@ public class ProductDto extends GenericDto {
         this.parameters = parameters;
     }
 
-    public ProductDto(String id, String name, String description, String price, List<String> photos, List<ParameterDto> parameters) {
+    public ProductDto(String id, String name, String description, Double price, List<String> photos, List<ParameterDto> parameters) {
         super(id);
         this.name = name;
         this.description = description;

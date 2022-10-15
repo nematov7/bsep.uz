@@ -1,4 +1,5 @@
 package uz.bsep.controllers.user;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import uz.bsep.controllers.AbstractController;
@@ -9,6 +10,4 @@ public class UserController extends AbstractController<UserService> {
     public UserController(UserService service) {
         super(service);
     }
-
-
 }

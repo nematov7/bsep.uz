@@ -27,7 +27,7 @@ import java.util.UUID;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class Auditable implements BaseGenericEntity {
     @Id
-    @Column(unique = true)
+
     private String id = UUID.randomUUID().toString();
 
     @CreatedDate
