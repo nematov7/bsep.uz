@@ -8,11 +8,13 @@ import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
+import uz.bsep.converter.ConverterList;
 import uz.bsep.entities.TranslateJson;
 import uz.bsep.entities.base.Auditable;
 import uz.bsep.entities.photo.Photo;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
@@ -31,14 +33,15 @@ import java.util.List;
 })
 
 public class Company extends Auditable {
+
     String name;
 
     @Type(type = "json")
     @Column(columnDefinition = "jsonb")
     TranslateJson descriptionTranslate;
 
-    @Type(type = "string-array")
-    @Column(columnDefinition = "text")
+    @Type(type = "json")
+    @Column(columnDefinition = "jsonb")
     List<String> phoneNumbers=new ArrayList<>();
 
     String email;
@@ -48,8 +51,9 @@ public class Company extends Auditable {
     Double longitude;
 
     Double latitude;
-    @OneToMany
-    List<Photo> photos = new ArrayList<>();
+
+    @Type(type = "json")
+    @Column(columnDefinition = "jsonb")
+    List<String> photos = new ArrayList<>();
 
 }
-//tmi9

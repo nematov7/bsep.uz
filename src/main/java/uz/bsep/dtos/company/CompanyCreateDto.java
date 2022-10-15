@@ -33,5 +33,6 @@ public class CompanyCreateDto implements BaseGenericDto {
 
     Double latitude;
 
-    List<Photo> photos;
+    List<String> photos;
+
 }

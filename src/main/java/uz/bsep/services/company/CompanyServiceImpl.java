@@ -1,6 +1,8 @@
 package uz.bsep.services.company;
 
+import com.google.gson.Gson;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import uz.bsep.criteria.base.GenericCriteria;
 import uz.bsep.dtos.company.CompanyCreateDto;
 import uz.bsep.dtos.company.CompanyDto;
@@ -24,11 +26,17 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public String create(CompanyCreateDto dto) {
-        TranslateJson translateJson = new TranslateJson(dto.getDescriptionUz(), dto.getDescriptionRu(), dto.getDescriptionEn());
-        Company company = mapper.fromCreateDto(dto);
-        company.setDescriptionTranslate(translateJson);
-        Company save = repository.save(company);
-        return "";
+        try {
+
+            TranslateJson translateJson = new TranslateJson(dto.getDescriptionUz(), dto.getDescriptionRu(), dto.getDescriptionEn());
+            Company company = mapper.fromCreateDto(dto);
+            company.setDescriptionTranslate(translateJson);
+            Company save = repository.save(company);
+
+        } catch (Exception e) {
+            return "NO";
+        }
+        return "OK";
     }
 
     @Override
@@ -43,6 +51,18 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public CompanyDto get(String id, String lang) {
+       return null;
+    }
+
+    public CompanyDto getCompanyById(String lang){
+        String object = repository.getCompanyBYId( lang);
+        
+        try {
+            Gson gson = new Gson();
+            return gson.fromJson(object, CompanyDto.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

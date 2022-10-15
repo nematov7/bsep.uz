@@ -56,7 +56,7 @@ public class ProductServiceImpl extends AbstractService<ProductRepository, Produ
     @Override
     public ProductDto get(String id, String lang) {
         String object = repository.getProductById(id, lang);
-        System.out.println(object);
+
         try {
             Gson gson = new Gson();
             return gson.fromJson(object, ProductDto.class);
