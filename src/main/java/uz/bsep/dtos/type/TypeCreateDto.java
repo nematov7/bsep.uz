@@ -1,15 +1,14 @@
-package uz.bsep.dtos.product;
+package uz.bsep.dtos.type;
+
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import uz.bsep.dtos.base.GenericDto;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class    ParameterDto extends GenericDto {
-
+public class TypeCreateDto {
+    String id;
     String name;
-
-    String value;
 }

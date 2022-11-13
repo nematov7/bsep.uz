@@ -3,8 +3,6 @@ package uz.bsep.dtos.product;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import uz.bsep.dtos.base.GenericDto;
-import uz.bsep.entities.photo.Photo;
-import uz.bsep.entities.product.Parameter;
 
 import java.util.List;
 @Getter

@@ -10,12 +10,8 @@ import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 import uz.bsep.entities.TranslateJson;
 import uz.bsep.entities.base.Auditable;
-import uz.bsep.entities.photo.Photo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,15 +36,21 @@ public class Product extends Auditable {
     @Column(columnDefinition = "jsonb")
     TranslateJson descriptionTranslate;
 
-    @OneToMany(mappedBy = "product")
-    List<Photo> photosUrls = new ArrayList<>();
 
-    @OneToMany(mappedBy = "product")
+    @org.hibernate.annotations.Type(type = "json")
+    @Column(columnDefinition = "jsonb")
+     List<String> photos = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     List<Parameter> parameters = new ArrayList<>();
+
     @Column(nullable = false)
     Double price;
 
     @ManyToOne
     Type type;
 
+    public void addParam(Parameter param) {
+        parameters.add(param);
+    }
 }

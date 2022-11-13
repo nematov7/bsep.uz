@@ -3,6 +3,7 @@ package uz.bsep.entities.product;
 import com.vladmihalcea.hibernate.type.array.IntArrayType;
 import com.vladmihalcea.hibernate.type.array.StringArrayType;
 import com.vladmihalcea.hibernate.type.json.JsonType;
+import io.swagger.v3.oas.annotations.Hidden;
 import lombok.*;
 import lombok.experimental.PackagePrivate;
 import org.hibernate.annotations.Type;
@@ -36,6 +37,7 @@ public class Parameter extends Auditable {
 
     String value;
 
+    @Hidden
     @ManyToOne
     Product product;
 }

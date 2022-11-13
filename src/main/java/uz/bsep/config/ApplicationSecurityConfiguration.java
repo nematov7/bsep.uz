@@ -44,8 +44,6 @@ public class ApplicationSecurityConfiguration  {
 
     private final UserServiceImp service;
 
-    @Value("${server.port}")
-    private Integer port;
 
     public final static String[] WHITE_LIST = {
             "/swagger-ui/**",
@@ -58,9 +56,7 @@ public class ApplicationSecurityConfiguration  {
 
     public final static String[] WHITE_LIST_METHOD_GET = {
             PATH + "/types/**",
-            PATH + "/genre/**",
-            PATH + "/file/**",
-            PATH + "/review/**"
+            PATH + "/file/**"
 
     };
     private final ObjectMapper mapper;
@@ -114,9 +110,9 @@ public class ApplicationSecurityConfiguration  {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeRequests(expressionInterceptUrlRegistry -> expressionInterceptUrlRegistry
                         .antMatchers(HttpMethod.GET, WHITE_LIST_METHOD_GET).permitAll()
-                        .antMatchers(WHITE_LIST).permitAll()
-                        .antMatchers(HttpMethod.POST, PATH + "/types/**", PATH + "/file/**").hasRole("ADMIN")
-                        .mvcMatchers("/").permitAll()
+//                        .antMatchers(WHITE_LIST).permitAll()
+//                        .antMatchers(HttpMethod.POST, PATH + "/types/**", PATH + "/file/**").hasRole("ADMIN")
+//                        .mvcMatchers("/").permitAll()
                         .anyRequest().permitAll()
                 );
         http.addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class);

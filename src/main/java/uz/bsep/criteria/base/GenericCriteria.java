@@ -14,17 +14,10 @@ import java.io.Serializable;
 @ParameterObject
 public class GenericCriteria implements BaseGenericCriteria, Serializable {
 
-    protected Long Id;
+    public Integer page = 1;
 
-    protected Integer page;
+    public Integer size = 9;
 
-    protected Integer perPage;
+    public String typeId;
 
-    protected String sortBy;
-
-    protected String sortDirection;
-
-    public String getSortDirection() {
-        return sortDirection == null || sortDirection.equals("") ? " ASC " : sortDirection;
-    }
 }

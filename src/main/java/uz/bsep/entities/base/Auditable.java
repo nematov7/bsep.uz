@@ -40,7 +40,7 @@ public abstract class Auditable implements BaseGenericEntity {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @Column(name = "is_deleted", columnDefinition = "NUMERIC default 0")
+    @Column(name = "is_deleted", columnDefinition = "NUMERIC default 1")
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean deleted;
 
